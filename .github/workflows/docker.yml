@@ -44,6 +44,16 @@ jobs:
             org.opencontainers.image.revision=${{ github.sha }}
             org.opencontainers.image.licenses=${{ github.event.repository.license.spdx_id }}
 
+      - name: Get Tag
+        id: get-publish-docker-tags
+        run: |
+          if [[ "${{ matrix.php }}" == "8.1" ]]; then
+            tags="${{ matrix.php }},latest"
+          else
+            tags="${{ matrix.php }}"
+          fi
+          echo "::set-output name=tag::${tags}"
+
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
@@ -51,4 +61,4 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          tags: ${{ matrix.php }}
+          tags: ${{ steps.get-publish-docker-tags.outputs.tags }}

@@ -5,15 +5,15 @@ This is a docker image to easily run easy-coding-standard.
 
 PHP 7.4:
 ```shell
-docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:php7.4 check --fix --config /tmp/ecs.php src
+docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:7.4 check --fix --config /tmp/ecs.php src
 ```
 PHP 8.0:
 ```shell
-docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:php8.0 check --fix --config /tmp/ecs.php src
+docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:8 check --fix --config /tmp/ecs.php src
 ```
 PHP 8.1:
 ```shell
-docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:php8.1 check --fix --config /tmp/ecs.php src
+docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:8.1 check --fix --config /tmp/ecs.php src
 ```
 
 run with recent changed files:
