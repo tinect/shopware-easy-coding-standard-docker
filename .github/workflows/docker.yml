@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+env:
+  DOCKER_REPOSITORY: ghcr.io/tinect/shopware-easy-coding-standard
+  CACHE_KEY: "x"
+
 jobs:
   build:
     strategy: 
@@ -27,7 +31,8 @@ jobs:
       - name: Get Tag
         id: get-docker-tag
         run: |
-          echo "::set-output name=tag::tinect/shopware-easy-coding-standard:${{ matrix.php }}"
+          tag="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }}"
+          echo "::set-output name=tag::${tag}"
 
       - name: Build docker image
         uses: docker/build-push-action@v2
