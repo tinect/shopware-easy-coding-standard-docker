@@ -34,7 +34,7 @@ jobs:
           if [[ "${{ matrix.php }}" == "8.1" ]]; then
             tags="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }},${{ env.DOCKER_REPOSITORY }}:latest"
           else
-            tags="${{ matrix.php }}"
+            tags="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }}"
           fi
           tag="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }}"
           echo "::set-output name=tag::${tag}"
