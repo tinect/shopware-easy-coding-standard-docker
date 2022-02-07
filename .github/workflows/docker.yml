@@ -31,15 +31,21 @@ jobs:
       - name: Get Tag
         id: get-docker-tag
         run: |
+          if [[ "${{ matrix.php }}" == "8.1" ]]; then
+            tags="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }},${{ env.DOCKER_REPOSITORY }}:latest"
+          else
+            tags="${{ matrix.php }}"
+          fi
           tag="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }}"
           echo "::set-output name=tag::${tag}"
+          echo "::set-output name=tags::${tags}"
 
       - name: Build docker image
         uses: docker/build-push-action@v2
         with:
           build-args: |
             PHP_VERSION=${{ matrix.php }}
-          tags: ${{ steps.get-docker-tag.outputs.tag }}
+          tags: ${{ steps.get-docker-tag.outputs.tags }}
           push: false
           load: true
           no-cache: true
@@ -63,8 +69,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push docker image
-        run: |
-          docker push ${{ steps.get-docker-tag.outputs.tag }}
-          if [[ "${{ matrix.php }}" == "8.1" ]]; then
-            docker push ${{ env.DOCKER_REPOSITORY }}
-          fi
+        run: docker push ${{ env.DOCKER_REPOSITORY }}  --all-tags
