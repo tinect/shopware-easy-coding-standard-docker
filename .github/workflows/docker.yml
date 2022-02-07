@@ -69,4 +69,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push docker image
-        run: docker push ${{ env.DOCKER_REPOSITORY }}  --all-tags
+        run: |
+          docker push ${{ steps.get-docker-tag.outputs.tag }}
+          if [[ "${{ matrix.php }}" == "8.1" ]]; then
+            docker push ${{ env.DOCKER_REPOSITORY }}
+          fi
