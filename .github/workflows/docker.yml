@@ -66,5 +66,5 @@ jobs:
         run: |
           docker push ${{ steps.get-docker-tag.outputs.tag }}
           if [[ "${{ matrix.php }}" == "8.1" ]]; then
-            docker push tinect/shopware-easy-coding-standard
+            docker push ${{ env.DOCKER_REPOSITORY }}
           fi
