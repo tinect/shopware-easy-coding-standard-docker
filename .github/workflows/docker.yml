@@ -27,8 +27,7 @@ jobs:
       - name: Build docker image
         uses: docker/build-push-action@v2
         with:
-          build-args: |
-            PHP_VERSION=${{ matrix.php }}
+          build-args: PHP_VERSION=${{ matrix.php }}
           tags: ${{ matrix.php }}
           push: false
           load: true
