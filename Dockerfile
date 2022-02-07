@@ -1,5 +1,3 @@
-ARG PHP=7.4
-
 FROM php:${PHP}-cli-alpine
 
 USER 1000:1000
