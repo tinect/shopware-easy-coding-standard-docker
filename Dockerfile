@@ -1,4 +1,4 @@
-FROM php:${PHP}-cli-alpine
+FROM php:${PHP_VERSION}-cli-alpine
 
 USER 1000:1000
 ENV COMPOSER_HOME /tmp/composer
