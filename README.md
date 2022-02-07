@@ -2,8 +2,18 @@ This is a docker image to easily run easy-coding-standard.
 
 `--config /tmp/ecs.php` uses a recent version of shopware [ecs.php](https://github.com/shopware/platform/blob/trunk/ecs.php)
 `src` is the folder of your code to check and fix
+
+PHP 7.4:
 ```shell
-docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard check --fix --config /tmp/ecs.php src
+docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:php7.4 check --fix --config /tmp/ecs.php src
+```
+PHP 8.0:
+```shell
+docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:php8.0 check --fix --config /tmp/ecs.php src
+```
+PHP 8.1:
+```shell
+docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:php8.1 check --fix --config /tmp/ecs.php src
 ```
 
 run with recent changed files:
