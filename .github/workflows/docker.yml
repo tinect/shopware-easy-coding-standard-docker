@@ -24,7 +24,7 @@ jobs:
           else
             tags="${{ matrix.php }}"
           fi
-          echo "::set-output name=tag::${tags}"
+          echo "::set-output name=tags::${tags}"
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
