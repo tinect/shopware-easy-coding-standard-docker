@@ -10,7 +10,7 @@ ENV SHOPWARE_TOOL_CACHE_ECS /tmp/var/cache/cs_fixer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install composer packages
-RUN composer global require \
+RUN echo ${PHP_VERSION} && composer global require \
         symplify/easy-coding-standard && \
     composer global clearcache && \
     rm -rf /var/tmp/* && \
