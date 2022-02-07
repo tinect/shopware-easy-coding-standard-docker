@@ -6,12 +6,15 @@ on:
 
 jobs:
   build:
+    strategy: 
+      matrix:
+        php: [7.4, 8.0, 8.1]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag tinect/shopware-easy-coding-standard:$(date +%s)
+        run: docker build --build-arg PHP=${{ matrix.php }} . --file Dockerfile --tag tinect/shopware-easy-coding-standard:php${{ matrix.php }}
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
