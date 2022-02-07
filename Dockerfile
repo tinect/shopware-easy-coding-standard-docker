@@ -1,3 +1,5 @@
+ARG PHP_VERSION
+
 FROM php:${PHP_VERSION}-cli-alpine
 
 USER 1000:1000
