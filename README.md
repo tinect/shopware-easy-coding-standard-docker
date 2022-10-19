@@ -19,8 +19,8 @@ docker run --rm -v ${PWD}:/app ghcr.io/tinect/shopware-easy-coding-standard:8.1 
 run with recent changed files:
 
 ```shell
-STAGED_PHP_FILES_CMD=`git diff --name-only $(git merge-base main HEAD) | grep \\.php`
-CHANGED_PHP_FILES_CMD=`git diff --name-only | grep \\.php`
+STAGED_PHP_FILES_CMD=`git diff --name-only --diff-filter=ACM $(git merge-base main HEAD) | grep \\.php`
+CHANGED_PHP_FILES_CMD=`git diff --name-only --diff-filter=ACM | grep \\.php`
 
 if [[ -z "$CHANGED_PHP_FILES_CMD" && -z "$STAGED_PHP_FILES_CMD" ]]
 then
