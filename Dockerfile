@@ -15,7 +15,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install composer packages
 RUN echo ${PHP_VERSION} && composer global require \
-        symplify/easy-coding-standard:~10.2.3 && \
+        kubawerlos/php-cs-fixer-custom-fixers:~v3.10.1 symplify/easy-coding-standard:~10.2.3 friendsofphp/php-cs-fixer:~v3.8.0 && \
     composer global clearcache && \
     rm -rf /var/tmp/* && \
     wget -q "https://raw.githubusercontent.com/shopware/platform/trunk/ecs.php" -O /tmp/ecs.php
