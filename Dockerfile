@@ -1,6 +1,8 @@
 ARG PHP_VERSION=7.4
 
 FROM php:${PHP_VERSION}-cli-alpine
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
 
 USER 1000:1000
 ENV COMPOSER_HOME /tmp/composer
@@ -10,8 +12,7 @@ ENV SHOPWARE_TOOL_CACHE_ECS /tmp/var/cache/cs_fixer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install composer packages
-RUN docker-php-ext-configure intl && docker-php-ext-install intl && \
-    echo ${PHP_VERSION} && composer global require \
+RUN echo ${PHP_VERSION} && composer global require \
         symplify/easy-coding-standard:~10.2.3 && \
     composer global clearcache && \
     rm -rf /var/tmp/* && \
