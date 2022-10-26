@@ -2,7 +2,7 @@ ARG PHP_VERSION=7.4
 
 FROM php:${PHP_VERSION}-cli-alpine
 
-RUN apk update && apk add libicu-dev && \
+RUN apk update && apk add icu-dev && \
     docker-php-ext-configure intl && \
     docker-php-ext-install intl
 
