@@ -1,8 +1,11 @@
 ARG PHP_VERSION=7.4
 
 FROM php:${PHP_VERSION}-cli-alpine
-RUN docker-php-ext-configure intl
-RUN docker-php-ext-install intl
+
+RUN apt-get clean && \
+    apt-get update && apt-get install -y libicu-dev && \
+    docker-php-ext-configure intl && \
+    docker-php-ext-install intl
 
 USER 1000:1000
 ENV COMPOSER_HOME /tmp/composer
