@@ -15,6 +15,7 @@ RUN echo ${PHP_VERSION} && composer global require \
     composer global clearcache && \
     rm -rf /var/tmp/* && \
     wget -q "https://raw.githubusercontent.com/shopware/platform/trunk/ecs.php" -O /tmp/ecs.php
+RUN docker-php-ext-install intl
 
 VOLUME ["/app"]
 WORKDIR /app
