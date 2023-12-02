@@ -11,7 +11,7 @@ jobs:
   build:
     strategy: 
       matrix:
-        php: [7.4, 8.0, 8.1]
+        php: [7.4, 8.0, 8.1, 8.2]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
       - name: Get Tag
         id: get-docker-tag
         run: |
-          if [[ "${{ matrix.php }}" == "8.1" ]]; then
+          if [[ "${{ matrix.php }}" == "8.2" ]]; then
             tags="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }},${{ env.DOCKER_REPOSITORY }}:latest"
           else
             tags="${{ env.DOCKER_REPOSITORY }}:${{ matrix.php }}"
@@ -70,6 +70,6 @@ jobs:
       - name: Push docker image
         run: |
           docker push ${{ steps.get-docker-tag.outputs.tag }}
-          if [[ "${{ matrix.php }}" == "8.1" ]]; then
+          if [[ "${{ matrix.php }}" == "8.2" ]]; then
             docker push ${{ env.DOCKER_REPOSITORY }}
           fi
